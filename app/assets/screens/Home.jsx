@@ -11,6 +11,9 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
+
 import { color } from "./components/colors";
 
 export function Home() {
@@ -65,7 +68,13 @@ export function Home() {
     console.log(`number`, randomNumber);
   }, [onClick]);
 
-  useEffect(() => {}, []);
+  let [fontsLoaded] = useFonts({
+    fontMain2: require("../fonts/Quintessential-Regular.ttf"),
+    pixelFont: require("../fonts/VT323-Regular.ttf"),
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <ScrollView>
       <ImageBackground
@@ -84,24 +93,26 @@ export function Home() {
                     <>
                       <Text
                         style={{
-                          fontSize: 20,
+                          fontSize: 25,
                           textAlign: "center",
                           color: "black",
                           paddingTop: 0,
                           paddingBottom: 10,
                           color: "white",
+                          fontFamily: "pixelFont",
                         }}
                       >
                         Guess The number between 1 and 30!
                       </Text>
                       <Text
                         style={{
-                          fontSize: 20,
+                          fontSize: 24,
                           textAlign: "center",
                           color: "black",
                           paddingTop: 0,
                           paddingBottom: 70,
                           color: "white",
+                          fontFamily: "pixelFont",
                         }}
                       >
                         You have five attempts
@@ -128,13 +139,14 @@ export function Home() {
               ) : (
                 <Text
                   style={{
-                    fontSize: 25,
+                    fontSize: 27,
                     textAlign: "center",
                     color: "red",
                     paddingTop: 0,
                     paddingBottom: 70,
                     color: "white",
                     fontWeight: "800",
+                    fontFamily: "pixelFont",
                   }}
                 >
                   {incercari === 0 ? "Game over!" : "Game started!"}
@@ -175,7 +187,7 @@ export function Home() {
                   >
                     <View
                       style={{
-                        width: 110,
+                        width: 90,
                         display: "flex",
                         justifyContent: "flex-start",
                         alignItems: "flex-end",
@@ -189,7 +201,13 @@ export function Home() {
                         backgroundColor: incercari === 0 ? "red" : "blue",
                       }}
                     >
-                      <Text style={{ color: "white", fontWeight: "700" }}>
+                      <Text
+                        style={{
+                          color: "white",
+                          fontWeight: "700",
+                          fontFamily: "pixelFont",
+                        }}
+                      >
                         Guesses left- {incercari}
                       </Text>
                     </View>
@@ -314,7 +332,8 @@ export function Home() {
                         style={{
                           textAlign: "center",
                           fontWeight: "800",
-                          fontSize: 20,
+                          fontSize: 25,
+                          fontFamily: "pixelFont",
                         }}
                       >
                         Type the number here !
@@ -358,10 +377,11 @@ export function Home() {
 
                   <Text
                     style={{
-                      fontSize: 25,
+                      fontSize: 29,
                       textAlign: "center",
                       color: "black",
                       paddingTop: 0,
+                      fontFamily: "pixelFont",
                     }}
                   >
                     {indiciu}
@@ -396,6 +416,7 @@ export function Home() {
                           paddingTop: 10,
                           width: 250,
                           zIndex: 200,
+                          fontFamily: "pixelFont",
                         }}
                       >
                         {felicitari}
@@ -488,7 +509,8 @@ export function Home() {
                 style={{
                   color: incercari === 0 ? "white" : "black",
                   textAlign: "center",
-                  fontSize: 20,
+                  fontSize: 21,
+                  fontFamily: "pixelFont",
                 }}
               >
                 {randomNumber === 0
