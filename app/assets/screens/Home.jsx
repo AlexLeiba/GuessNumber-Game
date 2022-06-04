@@ -53,6 +53,7 @@ export function Home() {
         `Congratulations! you guessed the number:  ${randomNumber} `
       );
       setRandomNumber(0);
+      setInputValue("");
     }
     return;
   }
@@ -352,11 +353,12 @@ export function Home() {
                       }}
                     >
                       <TextInput
+                        keyboardType="numeric"
                         width={"100%"}
                         borderRadius={5}
                         backgroundColor={"white"}
                         height={50}
-                        paddingLeft={19}
+                        paddingLeft={15}
                         onChangeText={(value) => setInputValue(value)}
                         value={inputValue}
                         fontSize={25}

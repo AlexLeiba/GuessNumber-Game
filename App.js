@@ -18,6 +18,7 @@ const Stack = createNativeStackNavigator();
 
 import { Register } from "./app/assets/screens/Register";
 import { Home } from "./app/assets/screens/Home";
+import { TicTacToe } from "./app/assets/screens/TicTacToe";
 
 export default function App() {
   return (
@@ -32,6 +33,11 @@ export default function App() {
           name="number"
           component={Home}
           options={{ title: "Guess Number" }}
+        />
+        <Stack.Screen
+          name="game"
+          component={TicTacToe}
+          options={{ title: "Tic Tac Toe", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

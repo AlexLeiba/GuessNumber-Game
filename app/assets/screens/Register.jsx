@@ -198,12 +198,32 @@ export function Register({ navigation }) {
             >
               <Button
                 width={"100%"}
-                title={"Next Game"}
+                title={"Guess number"}
                 backgroundColor={"black"}
                 borderRadius={20}
                 color={"white"}
                 height={50}
                 onPress={() => navigation.navigate("number")}
+              />
+            </View>
+            <View
+              style={{
+                width: "100%",
+                backgroundColor: "black",
+                borderRadius: 20,
+                height: 40,
+                zIndex: 20,
+                marginTop: 20,
+              }}
+            >
+              <Button
+                width={"100%"}
+                title={"Tic Tac toe"}
+                backgroundColor={"black"}
+                borderRadius={20}
+                color={"white"}
+                height={50}
+                onPress={() => navigation.navigate("game")}
               />
             </View>
           </View>
