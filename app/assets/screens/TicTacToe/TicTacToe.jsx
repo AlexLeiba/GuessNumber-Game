@@ -1,7 +1,5 @@
-import { NavigationContainer } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import { View, Text, TouchableOpacity, StatusBar } from "react-native";
 import { Style } from "./TicTacToe.style";
 
 export function TicTacToe({ navigation }) {
@@ -12,8 +10,6 @@ export function TicTacToe({ navigation }) {
   const [xWinner, setxWinner] = useState(0);
   const [oWinner, setoWinner] = useState(0);
   const [scoreWinner, setScoreWinner] = useState(false);
-  console.log(scoreWinner);
-  // const[newGame,setNewGame]=useState()
   function Cell({ numar }) {
     return (
       <TouchableOpacity
@@ -94,7 +90,7 @@ export function TicTacToe({ navigation }) {
       setxWinner(value);
       setTimeout(() => {
         handleNewGame();
-      }, 2000);
+      }, 100);
     }
   }, [scoreWinner]);
 
@@ -104,12 +100,13 @@ export function TicTacToe({ navigation }) {
       setoWinner(value);
       setTimeout(() => {
         handleNewGame();
-      }, 2000);
+      }, 100);
     }
   }, [scoreWinner]);
 
   return (
     <View>
+      <StatusBar barStyle={"dark-content"} />
       <View
         style={{
           display: "flex",

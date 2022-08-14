@@ -10,13 +10,14 @@ import {
   useWindowDimensions,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 
 import { color } from "./components/colors";
 
-export function Home() {
+export function GuessNumber() {
   const [inputValue, setInputValue] = useState("");
   const [randomNumber, setRandomNumber] = useState(0);
   const [onClick, setOnclick] = useState(false);
@@ -77,11 +78,14 @@ export function Home() {
     return <AppLoading />;
   }
   return (
-    <ScrollView>
-      <ImageBackground
-        style={{ height: "100%", width: "100%" }}
-        source={require("../../assets/screens/images/back.jpg")}
-      >
+    <ImageBackground
+      style={{ height: "100%", width: "100%" }}
+      source={{
+        uri: "https://i.pinimg.com/originals/46/e4/38/46e438a93cc58647274205fd7f5d8811.gif",
+      }}
+    >
+      <ScrollView>
+        <StatusBar barStyle={"dark-content"} />
         <KeyboardAvoidingView
           style={{ height: height - 130 }}
           behavior={"padding"}
@@ -97,7 +101,7 @@ export function Home() {
                           fontSize: 25,
                           textAlign: "center",
                           color: "black",
-                          paddingTop: 0,
+                          paddingTop: 20,
                           paddingBottom: 10,
                           color: "white",
                           fontFamily: "pixelFont",
@@ -143,7 +147,7 @@ export function Home() {
                     fontSize: 27,
                     textAlign: "center",
                     color: "red",
-                    paddingTop: 0,
+                    paddingTop: 20,
                     paddingBottom: 70,
                     color: "white",
                     fontWeight: "800",
@@ -159,7 +163,9 @@ export function Home() {
               felicitari === "" ? (
                 <>
                   <ImageBackground
-                    source={require("../screens/images/background.jpg")}
+                    source={{
+                      uri: "https://cdn3.vectorstock.com/i/1000x1000/32/92/game-background-castle-seamless-parallax-vector-18533292.jpg",
+                    }}
                     zIndex={incercari === 0 ? 200 : 0}
                     resizeMethod={"auto"}
                     style={{
@@ -335,6 +341,7 @@ export function Home() {
                           fontWeight: "800",
                           fontSize: 25,
                           fontFamily: "pixelFont",
+                          color: "white",
                         }}
                       >
                         Type the number here !
@@ -381,7 +388,7 @@ export function Home() {
                     style={{
                       fontSize: 29,
                       textAlign: "center",
-                      color: "black",
+                      color: "white",
                       paddingTop: 0,
                       fontFamily: "pixelFont",
                     }}
@@ -524,8 +531,8 @@ export function Home() {
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
-      </ImageBackground>
-    </ScrollView>
+      </ScrollView>
+    </ImageBackground>
   );
 }
 
