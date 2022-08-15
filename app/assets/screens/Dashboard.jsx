@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  useWindowDimensions,
   StatusBar,
   TextInput,
   Text,
+  Image,
 } from "react-native";
 import { GameCard } from "./components/GameCard/GameCard";
+import { SplashScreen } from "../splash/Splash";
 
 const games = [
   {
@@ -88,14 +89,19 @@ const games = [
 ];
 
 export function Dashboard({ navigation }) {
-  const { height } = useWindowDimensions();
   const [inputValue, setInputValue] = useState("");
   const [initialState, setInitialState] = useState(games);
   const [filteredState, setfilteredState] = useState(games);
-  console.log(filteredState);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const filteredGames = initialState.filter((data, index) => {
+    setTimeout(() => {
+      setLoading(true);
+    }, 6000);
+  });
+
+  useEffect(() => {
+    const filteredGames = initialState.filter((data) => {
       return data.title
         .toLocaleLowerCase()
         .includes(inputValue.toLocaleLowerCase());
@@ -107,66 +113,73 @@ export function Dashboard({ navigation }) {
     }
   }, [inputValue]);
   return (
-    <SafeAreaView backgroundColor="black" height="100%">
-      <View style={{ marginLeft: 20, marginRight: 20 }}>
-        <Text
-          style={{
-            color: "white",
-            textAlign: "center",
-            fontSize: 25,
-            marginTop: 10,
-          }}
-        >
-          Games
-        </Text>
-        <View
-          style={{
-            height: 40,
-            width: "100%",
-            backgroundColor: "gray",
-            marginTop: 30,
-            marginBottom: 10,
-            borderRadius: 15,
-          }}
-        >
-          <TextInput
-            placeholder="Search"
-            paddingLeft={30}
-            height={40}
-            clearButtonMode
-            paddingRight={30}
-            onChangeText={(value) => setInputValue(value)}
-          />
-        </View>
-      </View>
-      <ScrollView
-        backgroundColor="black"
-        height="100%"
-        style={{ marginRight: 15, marginLeft: 25 }}
-      >
-        <StatusBar barStyle={"light-content"} />
-
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            marginBottom: 100,
-            marginTop: 60,
-          }}
-        >
-          {filteredState.length > 0 ? (
-            <GameCard navigation={navigation} gamesData={filteredState} />
-          ) : (
-            <Text style={{ color: "white", fontSize: 15 }}>
-              Nu sa gasit nimic!
+    <>
+      {!loading ? (
+        <SplashScreen />
+      ) : (
+        <SafeAreaView backgroundColor="black" height="100%">
+          <View style={{ marginLeft: 20, marginRight: 20 }}>
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontSize: 25,
+                marginTop: 10,
+              }}
+            >
+              Games
             </Text>
-          )}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+
+            <View
+              style={{
+                height: 40,
+                width: "100%",
+                backgroundColor: "gray",
+                marginTop: 30,
+                marginBottom: 10,
+                borderRadius: 15,
+              }}
+            >
+              <TextInput
+                placeholder="Search"
+                paddingLeft={30}
+                height={40}
+                clearButtonMode
+                paddingRight={30}
+                onChangeText={(value) => setInputValue(value)}
+              />
+            </View>
+          </View>
+          <ScrollView
+            backgroundColor="black"
+            height="100%"
+            style={{ marginRight: 15, marginLeft: 25 }}
+          >
+            <StatusBar barStyle={"light-content"} />
+
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                marginBottom: 100,
+                marginTop: 60,
+              }}
+            >
+              {filteredState.length > 0 ? (
+                <GameCard navigation={navigation} gamesData={filteredState} />
+              ) : (
+                <Text style={{ color: "white", fontSize: 15 }}>
+                  Nu sa gasit nimic!
+                </Text>
+              )}
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      )}
+    </>
   );
 }
 

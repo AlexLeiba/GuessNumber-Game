@@ -17,7 +17,7 @@ export default function App() {
         <Stack.Screen
           name="number"
           component={GuessNumber}
-          options={{ title: "Guess Number" }}
+          options={{ title: "Guess Number", headerShown: false }}
         />
         <Stack.Screen
           name="game"
