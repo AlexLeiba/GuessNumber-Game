@@ -84,8 +84,6 @@ export function TicTacToe({ navigation }) {
     }
     setCells(initialArray);
     WinnerCheck(initialArray);
-
-    // console.log(`initialArray:::::`, initialArray);
   }
 
   function handleNewGame() {

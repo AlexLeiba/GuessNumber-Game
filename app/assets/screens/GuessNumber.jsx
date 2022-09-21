@@ -6,7 +6,6 @@ import {
   Image,
   Text,
   TextInput,
-  useWindowDimensions,
   ScrollView,
   TouchableOpacity,
   StatusBar,
