@@ -7,6 +7,7 @@ export function GameCard({ navigation, gamesData }) {
       {gamesData.map((data) => {
         return (
           <TouchableOpacity
+            key={data.id}
             style={{
               width: 157,
               height: 130,

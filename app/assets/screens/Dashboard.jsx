@@ -7,10 +7,10 @@ import {
   StatusBar,
   TextInput,
   Text,
-  Image,
 } from "react-native";
 import { GameCard } from "./components/GameCard/GameCard";
 import { SplashScreen } from "../splash/Splash";
+import { Animations } from "./components/Animations/Animations";
 
 const games = [
   {
@@ -97,7 +97,7 @@ export function Dashboard({ navigation }) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);
-    }, 4000);
+    }, 2000);
   });
 
   useEffect(() => {
@@ -119,16 +119,7 @@ export function Dashboard({ navigation }) {
       ) : (
         <SafeAreaView backgroundColor="black" height="100%">
           <View style={{ marginLeft: 20, marginRight: 20 }}>
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                fontSize: 25,
-                marginTop: 10,
-              }}
-            >
-              Games
-            </Text>
+            <Animations />
 
             <View
               style={{
@@ -144,7 +135,7 @@ export function Dashboard({ navigation }) {
                 placeholder="Search"
                 paddingLeft={30}
                 height={40}
-                clearButtonMode
+                clearButtonMode={"while-editing"}
                 paddingRight={30}
                 onChangeText={(value) => setInputValue(value)}
               />
